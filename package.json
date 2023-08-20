@@ -1,0 +1,16 @@
+{
+  "name": "leaflet-vanilla",
+  "version": "1.0.0",
+  "description": "Leaflet usage with markers with html css and js vanilla",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "serve -s public"
+  },
+  "author": "Facundo Palombo <facundo.palombo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "serve": "^14.2.0"
+  }
+}

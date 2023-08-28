@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const { getCity, getProvince } = require("../services/comune");
+const { getCity, getProvince } = require("../services/scrapper");
 const ensureDirectoryExistence = require("../utils/ensurePathExists");
 
 const loadProvince = async (req, res, next) => {

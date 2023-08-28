@@ -2,7 +2,7 @@ const express = require("express");
 const helmet = require("helmet");
 const logger = require("morgan");
 const baseRouter = require("./app/routes");
-const comuneRouter = require("./app/routes/comune");
+const scrapperRouter = require("./app/routes/scrapper");
 
 const ENV = process.env.NODE_ENV;
 
@@ -35,7 +35,7 @@ app.use(
 app.use(logger(isDev ? "dev" : "combined"));
 
 app.use("/", express.static("public"));
-app.use("/comune", comuneRouter);
+app.use("/scrapper", scrapperRouter);
 app.use("/api", baseRouter);
 
 app.listen(3000, () => {

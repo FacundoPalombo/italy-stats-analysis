@@ -1,3 +1,5 @@
+const cheerio = require("cheerio");
+
 const Axios = require("axios");
 
 const restclient = Axios.create({

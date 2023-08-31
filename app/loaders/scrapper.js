@@ -9,44 +9,51 @@ const loadProvince = async (req, res, next) => {
 
   console.info(`Saving comune /${provinceId} `);
 
-  const comunePage = await getProvince({ provinceId });
+  try {
+    const comunePage = await getProvince({ provinceId });
 
-  const filePath = path.join(
-    __dirname,
-    "../../scrapped-data/html/comune/",
-    provinceId,
-    "index.html"
-  );
+    const filePath = path.join(
+      __dirname,
+      "../../scrapped-data/html/comune/",
+      provinceId,
+      "index.html"
+    );
 
-  ensureDirectoryExistence(filePath);
+    ensureDirectoryExistence(filePath);
 
-  fs.writeFileSync(filePath, comunePage.data);
+    fs.writeFileSync(filePath, comunePage.data);
 
-  res.locals.comuneData = comunePage.data;
-  next();
+    res.locals.comuneData = comunePage.data;
+    next();
+  } catch (err) {
+    next(err);
+  }
 };
 
 const loadCity = async (req, res, next) => {
   const { provinceId, cityId } = req.params;
 
   console.info(`Saving comune /${provinceId}/${cityId} `);
+  try {
+    const comunePage = await getCity({ provinceId, cityId });
 
-  const comunePage = await getCity({ provinceId, cityId });
+    const filePath = path.join(
+      __dirname,
+      "../../scrapped-data/html/comune/",
+      provinceId,
+      cityId,
+      "index.html"
+    );
 
-  const filePath = path.join(
-    __dirname,
-    "../../scrapped-data/html/comune/",
-    provinceId,
-    cityId,
-    "index.html"
-  );
+    ensureDirectoryExistence(filePath);
 
-  ensureDirectoryExistence(filePath);
+    fs.writeFileSync(filePath, comunePage.data);
 
-  fs.writeFileSync(filePath, comunePage.data);
-
-  res.locals.comuneData = comunePage.data;
-  next();
+    res.locals.comuneData = comunePage.data;
+    next();
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = { loadCity, loadProvince };

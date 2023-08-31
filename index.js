@@ -38,6 +38,25 @@ app.use("/", express.static("public"));
 app.use("/scrapper", scrapperRouter);
 app.use("/api", baseRouter);
 
+app.use((err, req, res, next) => {
+  console.error(err.message, err.statusCode);
+  if (err?.data?.status) {
+    res
+      .status(err.data.status)
+      .send(
+        `<div id="error">Error ${err.data.status} - ${err.data.message}</div>`
+      );
+  }
+  if (err?.statusCode) {
+    res
+      .status(err.statusCode)
+      .send(`<div id="error">Error ${err.statusCode} - ${err.message}</div>`);
+  }
+  if (err) {
+    res.status(500).send('<div id="error">Error 500</div>');
+  }
+});
+
 app.listen(3000, () => {
   console.log("Server listening on localhost:3000");
 });

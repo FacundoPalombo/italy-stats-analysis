@@ -39,7 +39,7 @@ app.use("/scrapper", scrapperRouter);
 app.use("/api", baseRouter);
 
 app.use((err, req, res, next) => {
-  console.error(err.message, err.statusCode);
+  console.error(err.message, `[${err?.statusCode}] ${err?.data?.status}`);
   if (err?.data?.status) {
     res
       .status(err.data.status)

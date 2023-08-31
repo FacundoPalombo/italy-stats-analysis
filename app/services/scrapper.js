@@ -19,10 +19,9 @@ const getCity = async ({ provinceId, cityId }) => {
 const getProvince = async ({ provinceId }) => {
   try {
     const data = await restclient.get(`/${provinceId}/`);
-    console.log(data);
+
     return data;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };

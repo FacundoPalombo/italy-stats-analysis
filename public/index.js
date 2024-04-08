@@ -3,14 +3,14 @@ function insertUrlParam(key, value) {
   if (history.pushState) {
     let searchParams = new URLSearchParams(window.location.search);
     searchParams.set(key, value);
-    let newurl =
+    let newUrl =
       window.location.protocol +
       "//" +
       window.location.host +
       window.location.pathname +
       "?" +
       searchParams.toString();
-    window.history.pushState({ path: newurl }, "", newurl);
+    window.history.pushState({ path: newUrl }, "", newUrl);
   }
 }
 
@@ -57,8 +57,7 @@ function bootstrap() {
   const baseCoordinate = [37.86, 14.39];
   let map = L.map("map").setView(baseCoordinate, 6);
   // initialize Leaflet
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}", {
-    foo: "bar",
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);

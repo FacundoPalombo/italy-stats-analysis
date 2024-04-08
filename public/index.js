@@ -14,6 +14,17 @@ function insertUrlParam(key, value) {
   }
 }
 
+function deleteUrlParams() {
+  if (history.pushState) {
+    let newUrl =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname;
+    window.history.pushState({ path: newUrl }, "", newUrl);
+  }
+}
+
 function renderInput(elem) {
   const input = document.getElementById(elem);
   const countElement = document.getElementById(`${elem}_count`);
@@ -25,6 +36,34 @@ function renderInput(elem) {
   input.onchange = (e) => {
     countElement.innerText = e.target.value;
     window.store[elem] = e.target.value;
+    insertUrlParam(elem, e.target.value);
+    window.location.reload();
+  };
+}
+
+function renderSelect(elem) {
+  const input = document.getElementById(elem);
+  const countElement = document.getElementById(`${elem}_count`);
+
+  countElement.innerText = window.store[elem] ?? 1;
+
+  input.value = window.store[elem] ?? 1;
+
+  console.log(input, countElement.innerText, window.store);
+
+  input.onchange = (e) => {
+    countElement.innerText = e.target.value;
+    window.store[elem] = e.target.value;
+    insertUrlParam(elem, e.target.value);
+
+    // update the minmax value on maxdensity
+    const maxDensity = document.getElementById("maxDensity");
+    const [leftValue, rightValue] = e.target.value.toString().split("-");
+
+    maxDensity.min = leftValue;
+    maxDensity.max = rightValue;
+
+    renderInput("maxDensity");
     console.log(window.store);
   };
 }
@@ -32,7 +71,7 @@ function renderInput(elem) {
 // rendering and dom manipulation
 
 function bootstrap() {
-  const applyFilters = document.getElementById("apply_filters");
+  const clearFilters = document.getElementById("clear_filters");
   renderInput("blur");
   renderInput("radius");
   renderInput("maxZoom");
@@ -40,15 +79,10 @@ function bootstrap() {
   renderInput("minDensity");
   renderInput("maxDensity");
   renderInput("urbanizationGrade");
+  renderSelect("rangeDensity");
 
-  applyFilters.onclick = () => {
-    insertUrlParam("blur", window.store["blur"]);
-    insertUrlParam("radius", window.store["radius"]);
-    insertUrlParam("maxZoom", window.store["maxZoom"]);
-    insertUrlParam("minOpacity", window.store["minOpacity"]);
-    insertUrlParam("minDensity", window.store["minDensity"]);
-    insertUrlParam("maxDensity", window.store["maxDensity"]);
-    insertUrlParam("urbanizationGrade", window.store["urbanizationGrade"]);
+  clearFilters.onclick = () => {
+    deleteUrlParams();
     window.location.reload();
   };
 }
@@ -75,6 +109,7 @@ function bootstrap() {
     minDensity: parseInt(queryParams.get("minDensity")) || 20,
     maxDensity: parseInt(queryParams.get("maxDensity")) || 2000,
     urbanizationGrade: parseInt(queryParams.get("urbanizationGrade")) || 2,
+    rangeDensity: queryParams.get("rangeDensity") || "1000-4999",
   };
 
   bootstrap();

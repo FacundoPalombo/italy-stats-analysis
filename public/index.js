@@ -73,7 +73,7 @@ function renderSelect(elem) {
 
 // rendering and dom manipulation
 
-function bootstrap() {
+function bootstrapUI() {
   const clearFilters = document.getElementById("clear_filters");
   renderInput("blur");
   renderInput("radius");
@@ -91,7 +91,7 @@ function bootstrap() {
 }
 
 (function () {
-  const baseCoordinate = [37.86, 14.39];
+  const baseCoordinate = [41.96, 13.39];
   let map = L.map("map").setView(baseCoordinate, 6);
   // initialize Leaflet
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -115,7 +115,7 @@ function bootstrap() {
     rangeDensity: queryParams.get("rangeDensity") || "1000-4999",
   };
 
-  bootstrap();
+  bootstrapUI();
 
   const filteredLocations = allMarkers.filter(
     ({ population_density, urbanization_grade }) =>

@@ -118,9 +118,9 @@ function bootstrap() {
   bootstrap();
 
   const filteredLocations = allMarkers.filter(
-    ({ poblational_density, urbanization_grade }) =>
-      window.store.minDensity <= poblational_density &&
-      window.store.maxDensity >= poblational_density &&
+    ({ population_density, urbanization_grade }) =>
+      window.store.minDensity <= population_density &&
+      window.store.maxDensity >= population_density &&
       window.store.urbanizationGrade === urbanization_grade
   );
 

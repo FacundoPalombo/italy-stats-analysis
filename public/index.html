@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
   <!-- Make sure you put this AFTER Leaflet's CSS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -15,7 +17,7 @@
   <script src="./data.js" defer></script>
   <script src="./heat.js" defer></script>
   <script src="./index.js" defer></script>
-  <title>Italy map</title>
+  <title>Statistics Italy Map</title>
 </head>
 
 <body>
@@ -63,7 +65,7 @@
           <div class="flex-auto">
             <label for="maxDensity" class="mb-2 inline-block text-dark-700 dark:text-dark-200">Max density: <span
                 id="maxDensity_count"></span></label>
-            <input type="range" id="maxDensity" min="5" max="1500" step="5" />
+            <input type="range" id="maxDensity" min="1000" max="4999" step="5" />
           </div>
         </div>
         <div class="container b flex-auto box-border w-1/3">

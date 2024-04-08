@@ -3,6 +3,8 @@ const helmet = require("helmet");
 const logger = require("morgan");
 const baseRouter = require("./app/routes");
 const scrapperRouter = require("./app/routes/scrapper");
+const favicon = require("serve-favicon");
+const path = require("path");
 
 const ENV = process.env.NODE_ENV;
 
@@ -10,6 +12,8 @@ const isDev = ENV === "development";
 const isProd = ENV === "production";
 
 const app = express();
+
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 app.use(
   helmet({
@@ -27,11 +31,12 @@ app.use(
           "https://cdn.tailwindcss.com/",
           "",
         ],
-        "img-src": ["https://tile.openstreetmap.org/"],
+        "img-src": ["'self'", "https://tile.openstreetmap.org/"],
       },
     },
   })
 );
+
 app.use(logger(isDev ? "dev" : "combined"));
 
 app.use("/", express.static("public"));

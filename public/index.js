@@ -25,6 +25,15 @@ function deleteUrlParams() {
   }
 }
 
+function updateMinMax(minMax) {
+  // update the minmax value on maxdensity
+  const maxDensity = document.getElementById("maxDensity");
+  const [leftValue, rightValue] = minMax.split("-");
+
+  maxDensity.min = leftValue;
+  maxDensity.max = rightValue;
+}
+
 function renderInput(elem) {
   const input = document.getElementById(elem);
   const countElement = document.getElementById(`${elem}_count`);
@@ -39,32 +48,26 @@ function renderInput(elem) {
     insertUrlParam(elem, e.target.value);
     window.location.reload();
   };
+
+  input.addEventListener("input", (e) => {
+    countElement.innerText = e.target.value;
+  });
 }
 
 function renderSelect(elem) {
   const input = document.getElementById(elem);
   const countElement = document.getElementById(`${elem}_count`);
 
-  countElement.innerText = window.store[elem] ?? 1;
+  countElement.innerText = window.store[elem] ?? "1000-4999";
 
-  input.value = window.store[elem] ?? 1;
-
-  console.log(input, countElement.innerText, window.store);
+  input.value = window.store[elem] ?? "1000-4999";
 
   input.onchange = (e) => {
     countElement.innerText = e.target.value;
     window.store[elem] = e.target.value;
     insertUrlParam(elem, e.target.value);
-
-    // update the minmax value on maxdensity
-    const maxDensity = document.getElementById("maxDensity");
-    const [leftValue, rightValue] = e.target.value.toString().split("-");
-
-    maxDensity.min = leftValue;
-    maxDensity.max = rightValue;
-
     renderInput("maxDensity");
-    console.log(window.store);
+    updateMinMax(e.target.value);
   };
 }
 

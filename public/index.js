@@ -91,8 +91,8 @@ function bootstrapUI() {
 }
 
 (function () {
-  const baseCoordinate = [41.96, 13.39];
-  let map = L.map("map").setView(baseCoordinate, 6);
+  const baseCoordinate = [37.5675, 13.4542];
+  let map = L.map("map").setView(baseCoordinate, 16);
   // initialize Leaflet
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:

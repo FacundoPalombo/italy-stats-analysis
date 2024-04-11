@@ -1,5 +1,3 @@
-const cheerio = require("cheerio");
-
 const Axios = require("axios");
 
 const restclient = Axios.create({
@@ -18,7 +16,27 @@ const getCity = async ({ provinceId, cityId }) => {
 
 const getProvince = async ({ provinceId }) => {
   try {
-    const data = await restclient.get(`/${provinceId}/`);
+    const data = await restclient.get(`/${provinceId}/index.html`);
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getCityMap = async ({ provinceId, cityId }) => {
+  try {
+    const data = await restclient.get(`/${provinceId}/${cityId}/mappa.html`);
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+const getProvinceMap = async ({ provinceId }) => {
+  try {
+    const data = await restclient.get(`/${provinceId}/mappa.html`);
 
     return data;
   } catch (error) {
@@ -29,4 +47,6 @@ const getProvince = async ({ provinceId }) => {
 module.exports = {
   getCity,
   getProvince,
+  getCityMap,
+  getProvinceMap,
 };

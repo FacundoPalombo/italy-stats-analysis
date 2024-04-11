@@ -6,6 +6,7 @@ const restclient = Axios.create({
 
 const getCity = async ({ provinceId, cityId }) => {
   try {
+    console.log("Getting info from comuni-italiani.it");
     const data = await restclient.get(`/${provinceId}/${cityId}/index.html`);
     return data;
   } catch (error) {
@@ -15,6 +16,7 @@ const getCity = async ({ provinceId, cityId }) => {
 };
 
 const getProvince = async ({ provinceId }) => {
+  console.log("Getting info from comuni-italiani.it");
   try {
     const data = await restclient.get(`/${provinceId}/index.html`);
 
@@ -26,6 +28,8 @@ const getProvince = async ({ provinceId }) => {
 
 const getCityMap = async ({ provinceId, cityId }) => {
   try {
+    console.log("Getting info from comuni-italiani.it");
+
     const data = await restclient.get(`/${provinceId}/${cityId}/mappa.html`);
     return data;
   } catch (error) {
@@ -36,6 +40,8 @@ const getCityMap = async ({ provinceId, cityId }) => {
 
 const getProvinceMap = async ({ provinceId }) => {
   try {
+    console.log("Getting info from comuni-italiani.it");
+
     const data = await restclient.get(`/${provinceId}/mappa.html`);
 
     return data;

@@ -24,9 +24,12 @@ module.exports = defineConfig({
   reporter: "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    // I dont want to load the scripts unnecesary because the only that i will get is the google maps path
+    javaScriptEnabled: false,
+    // testing browser
+    headless: false,
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: "http://127.0.0.1:3000",
-    javaScriptEnabled: false,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
   },

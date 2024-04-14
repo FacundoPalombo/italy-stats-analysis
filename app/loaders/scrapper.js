@@ -20,7 +20,7 @@ const loadProvince = async (req, res, next) => {
     console.log("File was scrapped, returning data from local");
     res.locals.comuneData = fileWasScrapped;
     res.locals.isAlreadyScrapped = true;
-    next();
+    return next();
   } else {
     try {
       console.log("File is new, searching file on the internet");
@@ -45,7 +45,7 @@ const loadCity = async (req, res, next) => {
     console.log("File was scrapped, returning data from local");
     res.locals.comuneData = fileWasScrapped;
     res.locals.isAlreadyScrapped = true;
-    next();
+    return next();
   } else {
     try {
       const comunePage = await getCity({ provinceId, cityId });
@@ -69,7 +69,7 @@ const loadProvinceMap = async (req, res, next) => {
     console.log("File was scrapped, returning data from local");
     res.locals.comuneData = fileWasScrapped;
     res.locals.isAlreadyScrapped = true;
-    next();
+    return next();
   } else {
     try {
       const comunePage = await getProvinceMap({ provinceId });
@@ -93,7 +93,7 @@ const loadCityMap = async (req, res, next) => {
     console.log("File was scrapped, returning data from local");
     res.locals.comuneData = fileWasScrapped;
     res.locals.isAlreadyScrapped = true;
-    next();
+    return next();
   } else {
     try {
       const comunePage = await getCityMap({ provinceId, cityId });

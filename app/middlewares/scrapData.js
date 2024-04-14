@@ -3,7 +3,7 @@ const { saveData } = require("../services/saveData");
 const scrapProvince = (req, res, next) => {
   if (res.locals.isAlreadyScrapped) {
     console.log(`File already was scrapped, returning data from local`);
-    next();
+    return next();
   }
 
   const { provinceId } = req.params;
@@ -21,7 +21,7 @@ const scrapCity = (req, res, next) => {
   if (res.locals.isAlreadyScrapped) {
     console.log(`File already was scrapped, returning data from local`);
 
-    next();
+    return next();
   }
   const { cityId, provinceId } = req.params;
   const data = res.locals.comuneData;
@@ -38,7 +38,7 @@ const scrapProvinceMap = (req, res, next) => {
   if (res.locals.isAlreadyScrapped) {
     console.log(`File already was scrapped, returning data from local`);
 
-    next();
+    return next();
   }
   const { provinceId } = req.params;
   const data = res.locals.comuneData;
@@ -55,7 +55,7 @@ const scrapCityMap = (req, res, next) => {
   if (res.locals.isAlreadyScrapped) {
     console.log(`File already was scrapped, returning data from local`);
 
-    next();
+    return next();
   }
   const { cityId, provinceId } = req.params;
   const data = res.locals.comuneData;

@@ -12,8 +12,6 @@ export const provinceSelectors: ProvinceSelector = {
     "//html/body/span[3]/table[2]/tbody/tr[1]/td[1]/table/tbody/tr[5]/td[2]",
   population_density:
     "//html/body/span[3]/table[2]/tbody/tr[1]/td[1]/table/tbody/tr[7]/td/b",
-  surface:
-    "//html/body/span[3]/table[2]/tbody/tr[1]/td[1]/table/tbody/tr[7]/td/text()[3]",
 };
 
 export const provinceMapSelectors: ProvinceMapSelector = {

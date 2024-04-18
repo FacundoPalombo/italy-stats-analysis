@@ -39,5 +39,8 @@ export class ComunePage {
   async getStarted() {
     await this.goto();
     await expect(this.getTitle).toHaveText(/Comune di/i);
+    console.log(`----- Scrapping data from [${this.url}] -----`);
+    await this.scrapData();
+    console.log(`----- Data from [${this.url}] scrapped -----`);
   }
 }

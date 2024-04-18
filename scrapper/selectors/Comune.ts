@@ -15,8 +15,6 @@ export const comuneSelectors: ComuneSelector = {
     "//html/body/span[3]/table[2]/tbody/tr[1]/td[1]/table/tbody/tr[5]/td[2]",
   population_density:
     "//html/body/span[3]/table[2]/tbody/tr[3]/td[1]/table/tbody/tr[6]/td/b",
-  surface:
-    "//html/body/span[3]/table[2]/tbody/tr[3]/td[1]/table/tbody/tr[6]/td/text()[3]",
   zip_code:
     "//html/body/span[3]/table[2]/tbody/tr[3]/td[1]/table/tbody/tr[8]/td[2]/b/a",
   phone_prefix:

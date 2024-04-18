@@ -5,7 +5,6 @@ export type Province = {
   municipalities: number;
   initials: string;
   population_density: string;
-  surface: string;
 };
 
 export type ProvinceSelector = {

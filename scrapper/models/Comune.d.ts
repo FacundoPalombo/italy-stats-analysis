@@ -7,7 +7,6 @@ export type Comune = {
   municipalities: number;
   initials: string;
   population_density: string;
-  surface: string;
   zip_code: number;
   phone_prefix: number;
   code_istat: string;

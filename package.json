@@ -4,8 +4,7 @@
   "description": "Leaflet usage with markers with html css and js vanilla",
   "main": "index.js",
   "scripts": {
-    "start-static": "serve -s public/",
-    "dev": "nodemon ./index.js",
+    "start": "nodemon ./index.js",
     "scrap": "npx playwright test"
   },
   "author": "Facundo Palombo <facundo.palombo@gmail.com>",

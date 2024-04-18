@@ -9,12 +9,31 @@ const {
 const { sendHtml } = require("../middlewares/sendHtml");
 const { sanitizeParams } = require("../middlewares/sanitizeParams");
 const { clearScriptsFromHtml } = require("../middlewares/clearScripts");
+
 const {
   scrapProvince,
   scrapCity,
   scrapCityMap,
   scrapProvinceMap,
 } = require("../middlewares/scrapData");
+
+router.get(
+  "/map/:provinceId",
+  sanitizeParams,
+  loadProvinceMap,
+  clearScriptsFromHtml,
+  scrapProvinceMap,
+  sendHtml
+);
+
+router.get(
+  "/map/:provinceId/:cityId",
+  sanitizeParams,
+  loadCityMap,
+  clearScriptsFromHtml,
+  scrapCityMap,
+  sendHtml
+);
 
 router.get(
   "/:provinceId/:cityId",
@@ -34,21 +53,4 @@ router.get(
   sendHtml
 );
 
-router.get(
-  "/map/:provinceId/:cityId",
-  sanitizeParams,
-  loadCityMap,
-  clearScriptsFromHtml,
-  scrapCityMap,
-  sendHtml
-);
-
-router.get(
-  "/map/:provinceId",
-  sanitizeParams,
-  loadProvinceMap,
-  clearScriptsFromHtml,
-  scrapProvinceMap,
-  sendHtml
-);
 module.exports = router;

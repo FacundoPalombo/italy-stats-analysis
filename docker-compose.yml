@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  node_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./scrapped-data:/app/scrapped-data
+    command: npm start
+
+  playwright:
+    build:
+      context: .
+      dockerfile: Dockerfile_playwright
+    volumes:
+      - ./scrapped-data:/app/scrapped-data
+    command: npm run scrap
